@@ -48,7 +48,7 @@ The system follows a layered architecture:
 
 This project leverages Google's Gemini LLM models as intelligent agents:
 
-- **Gemini 1.5 Flash**: Used for efficient inference across all LLM tasks
+- **Gemini 2 Flash**: Used for efficient inference across all LLM tasks
 - **Configuration**: API keys stored in environment variables for secure access
 - **Prompt Engineering**: Carefully crafted prompts for specific task interpretation
 
