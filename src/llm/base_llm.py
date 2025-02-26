@@ -9,7 +9,7 @@ import os
 
 logger = logging.getLogger(__name__)
 
-def initialize_llm(model_name: str = "gemini-1.5-flash") -> Optional[genai.GenerativeModel]:
+def initialize_llm(model_name: str = "gemini-2.0-flash") -> Optional[genai.GenerativeModel]:
     """
     Initialize the Gemini LLM model.
 

@@ -74,19 +74,32 @@ def plan_and_execute_tasks(tasks: List[str], folder_path: str) -> None:
     
     Plan the sequence of function calls needed to execute these tasks. For compression tasks, you don't havae to run all until compress. 
     Just run compression which already has functionality to check if files are organized and then compresses them.
+    If users selects only todo then return only the process_tasks function. No need of other functions.
+    If user selects all function then give all functions in the plan in order that process_tasks is last.
     Return a JSON array of function calls in order that needs to be executed.
-    If the user tasks include 'todo', the execution plan can only have 'todo_tasks'. 
-    If users says all tasks return all tasks in order.
-    Return only expection plan in this form """ + """
-    execution_plan = [ {step': 'step_number', 'function': 'function_name'}]
-    Don't give args or kwargs in the plan.
+    Don't give args or kwargs in the plan. Just return one json file with function names and steps in order like below """ + \
+    """[ {step': 'step_number', 'function': 'function_name'}]
     """
     
     try:
         response = generate_response(prompt, executing_plan_agent)
         
-        # Log the response for debugging
-        logger.info(f"LLM response: {response}")
+        # Give some good logging to say that the process is starting on CLI like drawing a bot
+        logger.info(
+            "\n"
+            "Starting task execution...\n"
+            "     ,----.\n"
+            "   ,/      \\\n"
+            "  ((  ◕‿◕  ))\n"
+            "   `\\      /'\n"
+            "     `----'\n"
+            "  🤖 Task Bot 🤖\n"
+            "\nI'm processing your requests!\n"
+        )
+        
+        
+        
+        
         
         if not response:
             raise ValueError("Failed to get execution plan from LLM")
@@ -102,13 +115,13 @@ def plan_and_execute_tasks(tasks: List[str], folder_path: str) -> None:
             logger.error(f"Sanitized response content: {sanitized_response}")
             raise
         
-        has_compression=False
+        has_other_task=False
         # Log the execution plan
         logger.info("Execution plan:")
         i=1
         for step in execution_plan:
-            if step['function'] in ['compress_images', 'compress_pdf']:
-                has_compression=True
+            if step['function'] in ['compress_images', 'compress_pdf','process_tasks']:
+                has_other_task=True
             logger.info(f"{i}- {step['function']}")
             i+=1
         
@@ -141,7 +154,7 @@ def plan_and_execute_tasks(tasks: List[str], folder_path: str) -> None:
         for step in execution_plan:
             func_name = step['function']
             
-            if organise_check and not has_compression:
+            if organise_check and not has_other_task:
                 logger.info("Skipping create_category_dirs and organize_files as files are already organized")
                 break
             # Log the args for debugging
@@ -164,7 +177,7 @@ def plan_and_execute_tasks(tasks: List[str], folder_path: str) -> None:
                     logger.info("Folder is already organized")
                     organise_check=True
             elif func_name in ['create_category_dirs','organize_files'] and organise_check:
-                if not has_compression:
+                if not has_other_task:
                     logger.info("Skipping create_category_dirs and organize_files as files are already organized")
                     break
                 else:
@@ -191,6 +204,15 @@ def plan_and_execute_tasks(tasks: List[str], folder_path: str) -> None:
                         func(file)
             else:
                 func(**filtered_args)
-    
+        
+        logger.info(
+            "\n"
+            "All tasks completed successfully!\n"
+            "    \(^o^)/\n"
+            "     |___|    \n"
+            "     /   \    \n"
+            "\nThank you for using AI Assistant Bot!\n"
+        )
+        
     except Exception as e:  
         logger.error(f"Error in task execution: {str(e)}")

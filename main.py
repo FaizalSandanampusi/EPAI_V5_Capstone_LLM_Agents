@@ -19,11 +19,35 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def print_welcome_message():
+    """Print welcome message with ASCII art bot."""
+    welcome = """
+    Hello! I'm your AI Assistant Bot!
+         _____
+        /_____\\
+       /|     |\\
+      /_|_____|_\\
+        |  |  |
+        |--+--|
+        |__|__|
+       (oO___Oo)
+    
+    I can help you with:
+    - Organizing files 
+    - Compressing files 
+    - Running todo tasks
+    
+    How may I assist you today?
+    """
+    print(welcome)
+
 def main():
     """
     Main function that handles task interpretation and orchestration.
     """
     try:
+        print_welcome_message()
+        
         # Get tasks from user through agent
         tasks, folder_path = get_user_tasks()
         

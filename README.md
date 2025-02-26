@@ -2,7 +2,7 @@
 
 ## A Modular LLM-Orchestrated Automation Platform
 
-![Architecture Diagram](./src/architecture.png)
+![Architecture Diagram](src/screenshots/architecture.png)
 
 ## Introduction
 
@@ -52,6 +52,8 @@ This project leverages Google's Gemini LLM models as intelligent agents:
 - **Configuration**: API keys stored in environment variables for secure access
 - **Prompt Engineering**: Carefully crafted prompts for specific task interpretation
 
+The LLMs serve as function callers rather than direct executors, maintaining a clean separation between interpretation and execution layers.
+
 ## External API Integration
 
 The system integrates with several external services:
@@ -62,6 +64,7 @@ The system integrates with several external services:
 4. **Google Calendar API** - Calendar event creation and invitation management
 5. **Yahoo Finance (yfinance)** - Real-time stock data retrieval
 6. **Google Gemini API** - Advanced language model for intelligent orchestration
+
 
 ## Setup and Installation
 
@@ -143,6 +146,7 @@ The system recognizes these todo.txt formats:
    ```
 
 ## Project Structure
+
 ```
 capstone_project/
 ├── My_Folder/                  # User's working directory (created during execution)
@@ -171,6 +175,27 @@ capstone_project/
 ├── todo.txt                    # Sample todo file
 └── .env                        # Environment variables for API keys
 ```
+
+## Illustrations 
+
+### User Input Interface
+<img src="src/screenshots/user_input.png" alt="Description" width="500" height="300">
+
+*Screenshot showing the interactive command-line interface where users select tasks and provide folder locations*
+
+### Code Execution
+<img src="src/screenshots/execution.png" alt="Description" width="500" height="500">
+
+*Screenshot demonstrating the system processing files and executing tasks with real-time status updates and logs*
+
+### Results
+<img src="src/screenshots/result1.png" alt="Description" width="1100" height="300">
+
+<img src="src/screenshots/result2.png" alt="Description" width="1300" height="200">
+
+<img src="src/screenshots/result3.png" alt="Description" width="300" height="300">
+
+*Screenshot showing the organized folder structure and completed task notifications*
 
 ## Future Enhancements
 
