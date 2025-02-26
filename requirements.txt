@@ -1,0 +1,13 @@
+python-magic==0.4.27
+aiohttp==3.8.5
+APScheduler==3.10.1
+python-dotenv==1.0.0
+pathlib==1.0.1
+PyYAML==6.0.1
+google-generativeai==0.3.1 
+tinify==1.6.0
+iloveapi==0.1.4
+yfinance==0.2.54
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+google-api-python-client==2.161.0
