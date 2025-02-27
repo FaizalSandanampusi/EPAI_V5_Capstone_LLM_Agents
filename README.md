@@ -208,4 +208,4 @@ Potential extensions to this project:
 5. **Multi-User Support**: Add authentication and per-user configurations
 6. **Feedback Loop**: Implement a learning mechanism to improve LLM performance
 
-**Note**: This project is a demonstration of LLM orchestration concepts and integrates with external APIs that may require paid subscriptions for production use.
+**Note**: This project is a demonstration of LLM orchestration concepts and integrates with external APIs.
